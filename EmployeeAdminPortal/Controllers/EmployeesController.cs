@@ -38,25 +38,7 @@ namespace EmployeeAdminPortal.Controllers
             return Ok(employee);
         }
 
-        [HttpPost]
-        public IActionResult AddEmployee([FromBody] AddEmployeeDto employeeDto)
-        {
-            if (employeeDto == null)
-            {
-                return BadRequest("Invalid employee data.");
-            }
-            var employee = new Employee
-            {
-                Id = Guid.NewGuid(),
-                FirstName = employeeDto.FirstName,
-                Email = employeeDto.Email,
-                Phone = employeeDto.Phone,
-                Salary = employeeDto.Salary
-            };
-            context.Employees.Add(employee);
-            context.SaveChanges();
-            return CreatedAtAction(nameof(GetAllEmployees), new { id = employee.Id }, employee);
-        }
+      
         [HttpPut]
         [Route("{id:guid}")]
         public IActionResult UpdateEmployee(Guid id, [FromBody] AddEmployeeDto employeeDto)
